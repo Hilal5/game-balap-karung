@@ -1,1 +1,59 @@
+* { font-family: 'Poppins', sans-serif; }
 
+    /* Animations */
+    @keyframes hop { 0%,100%{transform:translateY(0) rotate(0) scale(1)}25%{transform:translateY(-15px) rotate(-3deg) scale(1.05)}50%{transform:translateY(-25px) rotate(-5deg) scale(1.1)}75%{transform:translateY(-15px) rotate(-3deg) scale(1.05)} }
+    @keyframes float { 0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-10px) rotate(5deg)}50%{transform:translateY(-20px) rotate(-5deg)}75%{transform:translateY(-10px) rotate(5deg)} }
+    @keyframes wave { 0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)} }
+    @keyframes pulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.1)} }
+    @keyframes sparkle { 0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)} }
+    @keyframes confetti { 0%{transform:translateY(-100vh) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
+    @keyframes slideIn { from{transform:translateX(-100%);opacity:0} to{transform:translateX(0);opacity:1} }
+    @keyframes slideOut { from{transform:translateX(-50%) translateY(0);opacity:1} to{transform:translateX(-50%) translateY(-100px);opacity:0} }
+    @keyframes gradientShift { 0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%} }
+    @keyframes soundWave { 0%{width:0;height:0;opacity:1}100%{width:100px;height:100px;opacity:0} }
+    @keyframes speedLine { from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(-30px)} }
+    @keyframes fadeOut { 0%{opacity:.5;transform:translateX(-50%) scale(1)}100%{opacity:0;transform:translateX(-50%) scale(1.5)} }
+
+    .hopping { animation: hop 0.4s ease-out; }
+    .floating { animation: float 3s ease-in-out infinite; }
+    .waving { animation: wave 2s ease-in-out infinite; }
+    .pulsing { animation: pulse 1s ease-in-out infinite; }
+    .sparkling { animation: sparkle 1s ease-in-out infinite; }
+
+    .animated-bg {
+      background: linear-gradient(270deg, #ff0000, #ffffff, #ff0000);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    .race-track {
+      background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 35%, #90EE90 35%, #90EE90 65%, #D2691E 65%, #8B4513 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .grass-texture { position:absolute; width:100%; height:30%; top:35%; background-image:repeating-linear-gradient(90deg,#90EE90,#90EE90 2px,#7CFC00 2px,#7CFC00 4px); opacity:.3; }
+    .track-lines { position:absolute; width:100%; height:2px; background:rgba(255,255,255,.3); }
+    .finish-line { background-image:repeating-linear-gradient(45deg,#000,#000 10px,#fff 10px,#fff 20px); box-shadow:0 0 20px rgba(0,0,0,.5); }
+
+    .character { transition:left .4s cubic-bezier(.68,-.55,.265,1.55); filter:drop-shadow(0 5px 10px rgba(0,0,0,.3)); }
+    .character-body { position:relative; background:linear-gradient(135deg,var(--color-primary) 0%,var(--color-secondary) 100%); border-radius:20px 20px 10px 10px; box-shadow:inset 0 2px 5px rgba(255,255,255,.3); }
+    .character-face { position:absolute; top:10px; left:50%; transform:translateX(-50%); width:20px; height:20px; }
+
+    .sack { background:linear-gradient(135deg,#8B4513 0%,#A0522D 50%,#6B3410 100%); border:2px solid #654321; box-shadow:inset 0 2px 5px rgba(0,0,0,.3); position:relative; overflow:hidden; }
+    .sack::before { content:''; position:absolute; top:5px; left:50%; transform:translateX(-50%); width:80%; height:2px; background:rgba(0,0,0,.2); }
+
+    .touch-button { user-select:none; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; transition:all .2s; }
+    .touch-button:active { transform:scale(.95); box-shadow: inset 0 3px 10px rgba(0,0,0,.3); }
+
+    .confetti-piece { position:fixed; width:10px; height:10px; animation: confetti 3s linear; z-index:1000; }
+    .power-up { position:absolute; width:30px; height:30px; border-radius:50%; background: radial-gradient(circle, #FFD700 0%, #FFA500 100%); box-shadow:0 0 20px #FFD700; animation:pulse 1s infinite; display:flex; align-items:center; justify-content:center; }
+    .sound-wave { position:absolute; border:2px solid rgba(255,255,255,.5); border-radius:50%; animation:soundWave 1s ease-out; }
+    .star { position:absolute; color:#FFD700; animation:sparkle 2s ease-in-out infinite; }
+
+    .cloud { position:absolute; background:white; border-radius:100px; opacity:.7; animation: float 20s infinite; }
+    .cloud::before,.cloud::after { content:''; position:absolute; background:white; border-radius:100px; }
+    .cloud::before { width:50px; height:50px; top:-25px; left:10px; }
+    .cloud::after { width:60px; height:40px; top:-15px; right:10px; }
+
+    @media (max-width: 768px) { .desktop-only{display:none!important} .mobile-only{display:block!important} }
+    @media (min-width: 769px) { .desktop-only{display:block!important} .mobile-only{display:none!important} }
