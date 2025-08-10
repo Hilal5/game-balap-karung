@@ -1,5 +1,6 @@
 # game-balap-karung
 Memperingati HUT RI ke 80 Merdeka!!^^
+https://hilal5.github.io/game-balap-karung/
 # Balap Karung – HUT RI ke-80
 
 Game mini 2-pemain bertema 17 Agustusan. Tekan tombol secara bergantian untuk membuat karakter melompat hingga garis finish. Ringan, tanpa build tools — cukup buka **index.html** di browser.
