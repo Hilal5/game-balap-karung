@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balap Karung - HUT RI ke-80</title>
 
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="animated-bg min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-6xl bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-4 md:p-8">
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <div class="flex justify-center items-center gap-2 mb-4">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3Crect width='3' height='1' fill='%23FF0000'/%3E%3Crect y='1' width='3' height='1' fill='%23FFFFFF'/%3E%3C/svg%3E" alt="Bendera Indonesia" class="w-12 h-8 rounded shadow-md" />
+        <h1 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">BALAP KARUNG</h1>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3Crect width='3' height='1' fill='%23FF0000'/%3E%3Crect y='1' width='3' height='1' fill='%23FFFFFF'/%3E%3C/svg%3E" alt="Bendera Indonesia" class="w-12 h-8 rounded shadow-md" />
+      </div>
+      <p class="text-lg md:text-xl text-gray-600 font-semibold">🎊 HUT RI ke-80 - Merdeka! 🎊</p>
+    </div>
+
+    <!-- Game Stats -->
+    <div class="grid grid-cols-3 gap-2 md:gap-4 mb-6">
+      <div class="bg-gradient-to-r from-red-500 to-red-600 text-white rounded-2xl p-3 md:p-4 text-center transform hover:scale-105 transition-transform">
+        <div class="text-xs md:text-sm opacity-90">Player 1</div>
+        <div class="text-xl md:text-3xl font-bold flex items-center justify-center gap-2"><i class="fas fa-trophy text-yellow-300"></i><span id="score1">0</span></div>
+      </div>
+      <div class="bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-2xl p-3 md:p-4 text-center transform hover:scale-105 transition-transform">
+        <div class="text-xs md:text-sm opacity-90">Ronde</div>
+        <div class="text-xl md:text-3xl font-bold" id="round">1</div>
+      </div>
+      <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl p-3 md:p-4 text-center transform hover:scale-105 transition-transform">
+        <div class="text-xs md:text-sm opacity-90">Player 2</div>
+        <div class="text-xl md:text-3xl font-bold flex items-center justify-center gap-2"><i class="fas fa-trophy text-yellow-300"></i><span id="score2">0</span></div>
+      </div>
+    </div>
+
+    <!-- Race Track -->
+    <div class="race-track relative h-64 md:h-96 rounded-2xl border-4 border-gray-800 overflow-hidden mb-6 shadow-inner" id="raceTrack">
+      <div class="cloud" style="width:80px;height:40px;top:20px;left:100px"></div>
+      <div class="cloud" style="width:60px;height:30px;top:40px;right:150px"></div>
+
+      <div class="absolute top-4 right-4 w-12 h-12 md:w-16 md:h-16 bg-yellow-400 rounded-full shadow-lg pulsing">
+        <div class="absolute inset-0 rounded-full bg-yellow-300 opacity-50 animate-ping"></div>
+      </div>
+
+      <div class="grass-texture"></div>
+      <div class="track-lines" style="top:45%"></div>
+      <div class="track-lines" style="top:55%"></div>
+
+      <div class="star text-2xl" style="top:30px;left:50px"><i class="fas fa-star"></i></div>
+      <div class="star text-xl" style="top:60px;right:100px"><i class="fas fa-star"></i></div>
+
+      <div class="finish-line absolute right-8 md:right-12 top-0 bottom-0 w-3 md:w-4 z-10"></div>
+      <div class="absolute right-4 md:right-6 top-4 text-3xl md:text-5xl waving z-10">🏁</div>
+
+      <!-- Player 1 -->
+      <div id="player1" class="character absolute left-8 md:left-12" style="top:30%; --color-primary:#FF6B6B; --color-secondary:#FF4444;">
+        <div class="relative w-16 h-20 md:w-20 md:h-24">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-10 md:w-12 md:h-12 bg-yellow-100 rounded-full border-2 border-gray-700">
+            <div class="character-face"><div class="text-xs">😊</div></div>
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-black rounded-t-lg"></div>
+          </div>
+          <div class="character-body w-12 h-10 md:w-14 md:h-12 mt-6 mx-auto"><div class="text-center text-white font-bold text-xs md:text-sm pt-1">1</div></div>
+          <div class="sack w-14 h-8 md:w-16 md:h-10 mx-auto rounded-b-lg -mt-1"></div>
+        </div>
+      </div>
+
+      <!-- Player 2 -->
+      <div id="player2" class="character absolute left-8 md:left-12" style="top:55%; --color-primary:#4ECDC4; --color-secondary:#2BA09A;">
+        <div class="relative w-16 h-20 md:w-20 md:h-24">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-10 md:w-12 md:h-12 bg-yellow-100 rounded-full border-2 border-gray-700">
+            <div class="character-face"><div class="text-xs">😄</div></div>
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-black rounded-t-lg"></div>
+          </div>
+          <div class="character-body w-12 h-10 md:w-14 md:h-12 mt-6 mx-auto"><div class="text-center text-white font-bold text-xs md:text-sm pt-1">2</div></div>
+          <div class="sack w-14 h-8 md:w-16 md:h-10 mx-auto rounded-b-lg -mt-1"></div>
+        </div>
+      </div>
+
+      <div class="absolute top-2 left-1/4 text-2xl floating">🚩</div>
+      <div class="absolute top-2 left-1/2 text-2xl floating" style="animation-delay:.5s">🎌</div>
+      <div class="absolute top-2 left-3/4 text-2xl floating" style="animation-delay:1s">🚩</div>
+    </div>
+
+    <!-- Desktop Controls -->
+    <div class="desktop-only">
+        <div class="flex justify-center gap-4 mb-4">
+        <button id="startBtn" onclick="Game.start()" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all">
+            <i class="fas fa-play mr-2"></i> MULAI LOMBA!
+        </button>
+        <button onclick="Game.reset()" class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all">
+            <i class="fas fa-redo mr-2"></i> RESET
+        </button>
+        </div>
+    </div>
+
+    <!-- Mobile Controls -->
+    <div class="mobile-only hidden">
+      <div class="flex justify-center gap-2 mb-4">
+        <button onclick="Game.start()" class="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg"><i class="fas fa-play"></i></button>
+        <button onclick="Game.reset()" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-full shadow-lg"><i class="fas fa-redo"></i></button>
+      </div>
+      <div class="grid grid-cols-2 gap-4 mt-4">
+        <div class="bg-red-50 rounded-2xl p-4 border-2 border-red-300">
+          <p class="text-center text-sm font-semibold text-red-600 mb-2">Player 1</p>
+          <div class="grid grid-cols-2 gap-2">
+            <button ontouchstart="Game.mobileControl(1, 'a')" class="touch-button bg-red-500 text-white font-bold py-4 rounded-xl text-lg shadow-md">A</button>
+            <button ontouchstart="Game.mobileControl(1, 's')" class="touch-button bg-red-500 text-white font-bold py-4 rounded-xl text-lg shadow-md">S</button>
+          </div>
+        </div>
+        <div class="bg-blue-50 rounded-2xl p-4 border-2 border-blue-300">
+          <p class="text-center text-sm font-semibold text-blue-600 mb-2">Player 2</p>
+          <div class="grid grid-cols-2 gap-2">
+            <button ontouchstart="Game.mobileControl(2, 'k')" class="touch-button bg-blue-500 text-white font-bold py-4 rounded-xl text-lg shadow-md">K</button>
+            <button ontouchstart="Game.mobileControl(2, 'l')" class="touch-button bg-blue-500 text-white font-bold py-4 rounded-xl text-lg shadow-md">L</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-4 md:p-6 mt-6 border-2 border-yellow-300">
+      <h3 class="text-lg md:text-xl font-bold text-center mb-3 text-orange-600"><i class="fas fa-gamepad mr-2"></i> Cara Bermain</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm md:text-base">
+        <div class="flex items-center gap-2"><div class="w-2 h-2 bg-red-500 rounded-full"></div><span class="font-semibold">Player 1:</span><span class="hidden md:inline">Tekan</span><kbd class="px-2 py-1 bg-gray-700 text-white rounded">A</kbd>&nbsp;&<kbd class="px-2 py-1 bg-gray-700 text-white rounded">S</kbd><span class="hidden md:inline"> bergantian</span></div>
+        <div class="flex items-center gap-2"><div class="w-2 h-2 bg-blue-500 rounded-full"></div><span class="font-semibold">Player 2:</span><span class="hidden md:inline">Tekan</span><kbd class="px-2 py-1 bg-gray-700 text-white rounded">K</kbd>&nbsp;&<kbd class="px-2 py-1 bg-gray-700 text-white rounded">L</kbd><span class="hidden md:inline"> bergantian</span></div>
+      </div>
+      <p class="text-center mt-3 text-gray-600 text-sm"><i class="fas fa-flag-checkered mr-1"></i> Lompat sampai garis finish untuk menang! <span class="hidden md:inline">Semangat kemerdekaan! 🇮🇩</span></p>
+    </div>
+  </div>
+
+  <!-- Winner Modal -->
+  <div id="winnerModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50">
+    <div class="bg-white rounded-3xl p-8 md:p-12 max-w-md w-full mx-4 transform scale-0 transition-transform duration-500" id="winnerContent">
+      <div class="text-center">
+        <div class="text-6xl md:text-8xl mb-4" id="winnerEmoji">🏆</div>
+        <h2 class="text-2xl md:text-4xl font-bold bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent mb-2" id="winnerText"></h2>
+        <p class="text-lg md:text-xl text-gray-600 mb-6">Merdeka! Merdeka! Merdeka!</p>
+        <div class="flex flex-col md:flex-row gap-3 justify-center">
+          <button onclick="Game.nextRound()" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all"><i class="fas fa-arrow-right mr-2"></i> Ronde Berikutnya</button>
+          <button onclick="Game.reset()" class="bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all"><i class="fas fa-home mr-2"></i> Game Baru</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
